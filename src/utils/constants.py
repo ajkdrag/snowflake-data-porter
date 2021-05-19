@@ -1,4 +1,3 @@
-from src.operations import put, get, copy
 from enum import Enum
 
 
@@ -7,10 +6,12 @@ class YamlContractEnum(Enum):
     COPY = "copy"
     PUT = "put"
     GET = "get"
+    STAGE_TYPE = "stage_type"
+    QUERY = "query"
 
 
-DICT_OPERATION_TYPE_TO_CALLABLE = {
-    YamlContractEnum.COPY.value: copy.CopyToSnowflake,
-    YamlContractEnum.PUT.value: put.PutToSnowflake,
-    YamlContractEnum.GET.value: get.GetFromSnowflake,
+DICT_OPERATION_TYPE_TO_IMPORT = {
+    YamlContractEnum.COPY.value: "src.operations.copy.CopyToSnowflake",
+    YamlContractEnum.PUT.value: "src.operations.put.PutToSnowflake",
+    YamlContractEnum.GET.value: "src.operations.get.GetFromSnowflake",
 }
