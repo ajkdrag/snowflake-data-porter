@@ -1,6 +1,5 @@
-from os import getenv
 from src.io.file_io import get_abs_path
-from src.parsers.config_parsers import GlobalConfigParser
+from src.parsers.global_config_parser import GlobalConfigParser
 from src.logger import get_logger, init_default_handler
 
 
@@ -9,7 +8,7 @@ _global_config_abs_path = get_abs_path(
 )
 
 
-base_config = GlobalConfigParser.parse(_global_config_abs_path)
+base_config = GlobalConfigParser().parse(_global_config_abs_path)
 
 _log_level = base_config.get("log_level")
 log = get_logger(__name__, log_level=_log_level)

@@ -1,0 +1,13 @@
+- name: TestPutOperation
+  operation_type: put
+  connection_config: ""
+  source_file: ""
+  database: demo_db
+  schema: public
+
+- name: TestPutOperation2
+  operation_type: put
+  connection_config: ""
+  source_file: ""
+  database: demo_db
+  schema: public

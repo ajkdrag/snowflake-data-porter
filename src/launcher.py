@@ -1,17 +1,26 @@
+import argparse
 from src import log
+from src.controller.pipeline_manager import PipelineManager
 
 
 def main():
-    from src.parsers.config_parsers import SnowflakeConfigParser
-    from src.io import snowflake_io
+    parser = argparse.ArgumentParser(
+        description="Utility tool for moving data from local to snowflake tables and vice versa."
+    )
+    parser.add_argument(
+        "--config",
+        action="store",
+        help="config file absolute path",
+        required=True,
+        type=str,
+    )
 
-    test_path = "/media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/configs/snowflake_conn.cfg.yaml"
-    snowflake_params = SnowflakeConfigParser.parse(test_path)
-    log.debug(snowflake_params)
+    args = parser.parse_args()
+    pipeline_manager = PipelineManager(config_path=args.config)
+    pipeline_manager.parse_config()
+    pipeline_manager.buildPipeline()
+    pipeline_manager.triggerPipeline()
 
-    connection_obj = snowflake_io.create_new_connection(snowflake_params)
-    cursor = snowflake_io.execute(connection_obj, "select current_date();");
-    log.info(cursor.fetchone())
 
 if __name__ == "__main__":
     log.info("Testing snowflake connection")
