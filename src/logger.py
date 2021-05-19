@@ -2,7 +2,7 @@ import logging
 
 
 dict_log_formats = {
-    "DEBUG": "%(asctime)s | %(name)s | %(funcName)s | %(lineno)d | %(levelname)s - %(message)s",
+    "DEBUG": "%(asctime)s | %(module)s | %(funcName)s | %(lineno)d | %(levelname)s - %(message)s",
     "INFO": "%(message)s",
 }
 
