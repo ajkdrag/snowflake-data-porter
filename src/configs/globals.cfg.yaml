@@ -1,0 +1,5 @@
+# defaults to dev if environment var "ENVIRONMENT" is not set otherwise
+dev:
+  log_level: "DEBUG"
+prod:
+  log_level: "INFO"
