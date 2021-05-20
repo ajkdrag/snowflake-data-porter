@@ -6,7 +6,7 @@ from src import log
 
 
 class PutToSnowflake(BaseOperation):
-    source_file = None
+    source = None
     template_file = None
     target = None
     stage_type = None
@@ -24,7 +24,7 @@ class PutToSnowflake(BaseOperation):
         return query
 
     def _format_query(self, query):
-        return query.format(self.source_file, self.target)
+        return query.format(self.source, self.target)
 
     def run(self, context_manager):
         log.info(f"Running operation -> {self.name}")

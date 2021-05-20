@@ -1,0 +1,6 @@
+- stage_type: user
+  query: "get @~/{} file://{};"
+- stage_type: table
+  query: "get @%{} file://{};"
+- stage_type: named
+  query: "get @{} file://{};"
