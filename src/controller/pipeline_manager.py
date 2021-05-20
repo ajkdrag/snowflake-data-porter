@@ -40,4 +40,6 @@ class PipelineManager:
         ) in self.context_manager.yield_operation_outputs_as_dataframes():
             _output_file_name = f"{operation_type}_{now}.csv"
             _output_path = join(self.wrk_dir, operation_type, _output_file_name)
-            write_dataframe_to_file(_output_path, result_df, mode ="w+",create_parent_dirs=True)
+            write_dataframe_to_file(
+                _output_path, result_df, mode="w+", create_parent_dirs=True
+            )
