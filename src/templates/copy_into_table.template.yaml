@@ -1,0 +1,6 @@
+- stage_type: user
+  query: "copy into {} from @~/{};"
+- stage_type: table
+  query: "copy into {} from @%{};"
+- stage_type: named
+  query: "copy into {} from @{};"
