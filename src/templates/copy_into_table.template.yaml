@@ -1,6 +1,6 @@
 - stage_type: user
-  query: "copy into {} from @~/{};"
+  query: "copy into {target} from @~/{source};"
 - stage_type: table
-  query: "copy into {} from @%{};"
+  query: "copy into {target} from @%{source};"
 - stage_type: named
-  query: "copy into {} from @{};"
+  query: "copy into {target} from @{source};"

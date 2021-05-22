@@ -1,6 +1,6 @@
 - stage_type: user
-  query: "put file://{} @~/{};"
+  query: "put file://{source} @~/{target};"
 - stage_type: table
-  query: "put file://{} @%{};"
+  query: "put file://{source} @%{target};"
 - stage_type: named
-  query: "put file://{} @{};"
+  query: "put file://{source} @{target};"
