@@ -1,5 +1,5 @@
-from src.operations import BaseOperation
+from src.operations import PortViaStage
 
 
-class CopyToSnowflake(BaseOperation):
+class CopyToSnowflake(PortViaStage):
     pass

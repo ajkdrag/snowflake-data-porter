@@ -1,6 +1,6 @@
 - stage_type: user
-  query: "get @~/{} file://{};"
+  query: "get @~/{source} file://{target};"
 - stage_type: table
-  query: "get @%{} file://{};"
+  query: "get @%{source} file://{target};"
 - stage_type: named
-  query: "get @{} file://{};"
+  query: "get @{source} file://{target};"

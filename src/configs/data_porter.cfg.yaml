@@ -1,10 +1,21 @@
-- name: TestPutOperation
-  operation_type: put
-  template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/put.template.yaml
+# - name: TestPutOperation
+#   operation_type: put
+#   template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/put.template.yaml
+#   connection_config: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/configs/snowflake_conn.cfg.yaml
+#   source: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/.files/test_file_1.csv
+#   stage_type: user
+#   target: "test"
+#   database: demo_db
+#   schema: public
+
+
+- name: TestGetOperation
+  operation_type: get
+  template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/get.template.yaml
   connection_config: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/configs/snowflake_conn.cfg.yaml
-  source: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/.files/test_file_1.csv
+  source: test/test_file_1.csv.gz
   stage_type: user
-  target: "test"
+  target: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/.files/get/
   database: demo_db
   schema: public
 
@@ -12,28 +23,49 @@
   operation_type: put
   template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/put.template.yaml
   connection_config: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/configs/snowflake_conn.cfg.yaml
-  source: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/.files/test_file_2.csv
+  source: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/.files/get/test_file_1.csv.gz
   stage_type: table
   target: test
   database: demo_db
   schema: public
 
-- name: TestGetOperation
-  operation_type: get
-  template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/get.template.yaml
-  connection_config: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/configs/snowflake_conn.cfg.yaml
-  source: test
-  stage_type: user
-  target: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/.files/get/
-  database: demo_db
-  schema: public
+# - name: TestGetOperation2
+#   operation_type: get
+#   template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/get.template.yaml
+#   connection_config: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/configs/snowflake_conn.cfg.yaml
+#   source: test
+#   stage_type: table
+#   target: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/.files/get/
+#   database: demo_db
+#   schema: public
 
-- name: TestGetOperation2
-  operation_type: get
-  template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/get.template.yaml
+# - name: TestCopyOperation
+#   operation_type: copy
+#   template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/copy_into_table.template.yaml
+#   connection_config: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/configs/snowflake_conn.cfg.yaml
+#   source: test/test_file_1.csv.gz
+#   stage_type: user
+#   target: test
+#   database: demo_db
+#   schema: public
+
+- name: TestCopyOperation2
+  operation_type: copy
+  template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/copy_into_table.template.yaml
   connection_config: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/configs/snowflake_conn.cfg.yaml
   source: test
   stage_type: table
-  target: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/.files/get/
+  target: test
   database: demo_db
   schema: public
+
+# - name: TestCopyOperation3
+#   operation_type: copy
+#   template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/copy_into_location.template.yaml
+#   connection_config: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/configs/snowflake_conn.cfg.yaml
+#   source: test
+#   stage_type: user
+#   target: test_copy_into_location.csv
+#   database: demo_db
+#   schema: public
+#   overwrite: "True"
