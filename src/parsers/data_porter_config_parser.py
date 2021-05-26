@@ -1,7 +1,6 @@
-import importlib
 from src import log
 from src.parsers import BaseConfigParser
-from src.utils.constants import YamlContractEnum, DICT_OPERATION_TYPE_TO_IMPORT
+from src.utils.constants import YamlContractEnum, get_operations_from_types
 
 
 class DataPorterConfigParser(BaseConfigParser):
@@ -12,9 +11,7 @@ class DataPorterConfigParser(BaseConfigParser):
             _operation_type = operation_config.get(
                 YamlContractEnum.OPERATION_TYPE.value
             )
-            operation_to_import = DICT_OPERATION_TYPE_TO_IMPORT.get(_operation_type)
-            module_, delimiter, class_ = operation_to_import.rpartition(".")
-            operation = getattr(importlib.import_module(module_), class_)()
+            operation = get_operations_from_types([_operation_type])[0]
             list_sub_operations = operation.get_sub_operations(operation_config)
             list_operations.extend(list_sub_operations)
         return list_operations

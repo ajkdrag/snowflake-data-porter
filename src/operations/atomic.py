@@ -44,3 +44,15 @@ class LoadUnloadStage(BaseOperation):
         _cursor = snowflake_io.execute(_connection, _query)
         _output = snowflake_io.fetch_one(_cursor)
         context_manager.add_operation_output(self.operation_type, _output)
+
+
+class Copy(LoadUnloadStage):
+    pass
+
+
+class Get(LoadUnloadStage):
+    pass
+
+
+class Put(LoadUnloadStage):
+    pass
