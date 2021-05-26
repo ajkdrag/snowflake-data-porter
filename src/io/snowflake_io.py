@@ -4,11 +4,7 @@ from src import log
 
 def create_new_connection(connection_params):
     return connector.connect(
-        user=connection_params["user"],
-        account=connection_params["account"],
-        password=connection_params["password"],
-        warehouse=connection_params["warehouse"],
-        authenticator=connection_params["authenticator"],
+        **connection_params
     )
 
 
