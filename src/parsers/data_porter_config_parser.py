@@ -15,7 +15,6 @@ class DataPorterConfigParser(BaseConfigParser):
             operation_to_import = DICT_OPERATION_TYPE_TO_IMPORT.get(_operation_type)
             module_, delimiter, class_ = operation_to_import.rpartition(".")
             operation = getattr(importlib.import_module(module_), class_)()
-            for attr, val in operation_config.items():
-                setattr(operation, attr, val)
-            list_operations.append(operation)
+            list_sub_operations = operation.get_sub_operations(operation_config)
+            list_operations.extend(list_sub_operations)
         return list_operations

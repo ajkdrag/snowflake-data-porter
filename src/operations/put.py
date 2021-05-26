@@ -1,5 +1,5 @@
-from src.operations import PortViaStage
+from src.operations.atomic import LoadUnloadStage
 
 
-class PutToSnowflake(PortViaStage):
+class PutToSnowflake(LoadUnloadStage):
     pass
