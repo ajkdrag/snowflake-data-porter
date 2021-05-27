@@ -11,14 +11,14 @@ class YamlContractEnum(Enum):
     GET = "get"
     STAGE_TYPE = "stage_type"
     QUERY = "query"
-    PUT_COPY = "put_copy"
+    COMPOSITE = "composite"
 
 
 DICT_OPERATION_TYPE_TO_IMPORT = {
     YamlContractEnum.COPY.value: "src.operations.atomic.Copy",
     YamlContractEnum.PUT.value: "src.operations.atomic.Put",
     YamlContractEnum.GET.value: "src.operations.atomic.Get",
-    YamlContractEnum.PUT_COPY.value: "src.operations.composite.PutCopy"
+    YamlContractEnum.COMPOSITE.value: "src.operations.composite.LoadUnloadTable"
 }
 
 
