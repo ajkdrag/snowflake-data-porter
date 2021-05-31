@@ -1,4 +1,5 @@
 import string
+from src.utils.exceptions import LoadUnloadStageException
 from src.operations import BaseOperation
 from src.io.file_io import get_all_data_from_yaml
 from src.io import snowflake_io
@@ -33,6 +34,10 @@ class LoadUnloadStage(BaseOperation):
             stage_type = template.get(YamlContractEnum.STAGE_TYPE.value)
             if stage_type == self.stage_type:
                 query = template.get(YamlContractEnum.QUERY.value)
+        if query is None:
+            raise LoadUnloadStageException(
+                f"No matching stage type for stage -> {stage_type}, found in template file -> {self.template_file}"
+            )
         return query
 
     def run(self, context_manager):
