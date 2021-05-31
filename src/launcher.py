@@ -32,5 +32,7 @@ def main():
 
 
 if __name__ == "__main__":
-    log.info("======== Started Execution ===========")
+    log.info("======== Started Execution =========")
     main()
+    log.info("======== Finished Execution =========")
+

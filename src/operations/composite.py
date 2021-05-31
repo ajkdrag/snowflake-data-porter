@@ -2,7 +2,7 @@ from src.operations import BaseOperation
 from src.utils.constants import YamlContractEnum, get_operations_from_types
 
 
-class LoadUnloadTable(BaseOperation):
+class Composite(BaseOperation):
     def get_sub_operations(self, config):
         sub_operation_types = config.get(YamlContractEnum.OPERATION_TYPE.value).split(
             "_"
@@ -23,7 +23,7 @@ class LoadUnloadTable(BaseOperation):
                 for dict_ in list_sub_operation_configs:
                     dict_.setdefault(attr, val)
 
-        LoadUnloadTable._chain_source_and_target(
+        Composite._chain_source_and_target(
             num_sub_operations, list_sub_operation_configs
         )
 
