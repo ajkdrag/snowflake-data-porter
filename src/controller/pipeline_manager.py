@@ -1,7 +1,8 @@
 from src.parsers.data_porter_config_parser import DataPorterConfigParser
 from src.controller.pipeline import Pipeline
 from src.controller.context_manager import ContextManager
-from src.io.file_io import join, write_all_data_to_file, write_dataframe_to_file
+from src.io.file_io import join, write_dataframe_to_file
+from src import log
 from datetime import datetime
 
 
@@ -40,6 +41,9 @@ class PipelineManager:
         ) in self.context_manager.yield_operation_outputs_as_dataframes():
             _output_file_name = f"{operation_type}_{now}.csv"
             _output_path = join(self.wrk_dir, operation_type, _output_file_name)
+            log.info(
+                f"Writing result for operation {operation_type} to -> {_output_path}"
+            )
             write_dataframe_to_file(
                 _output_path, result_df, mode="w+", create_parent_dirs=True
             )

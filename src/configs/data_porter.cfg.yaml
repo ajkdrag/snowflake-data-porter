@@ -2,7 +2,7 @@
   operation_type: put
   template_file: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/templates/put.template.yaml
   connection_config: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/src/configs/snowflake_conn.cfg.yaml
-  source: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/.files/
+  source: /media/ajkdrag/Overdrive/vs_workspace/projects/SnowflakeDataPorter/.files/get2/
   stage_type: user
   target: "test"
   database: demo_db

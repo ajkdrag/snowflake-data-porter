@@ -1,6 +1,5 @@
 import string
 
-from numpy import source
 from src.utils.exceptions import LoadUnloadStageException
 from src.operations import BaseOperation
 from src.io.file_io import get_all_data_from_yaml, yield_all_files
@@ -30,8 +29,7 @@ class LoadUnloadStage(BaseOperation):
             **{field_name: getattr(self, field_name) for field_name in field_names}
         )
 
-    def _parse_query_from_template(self):
-        list_templates = get_all_data_from_yaml(self.template_file)
+    def _parse_query_from_template(self, list_templates):
         query = None
         for template in list_templates:
             stage_type = template.get(YamlContractEnum.STAGE_TYPE.value)
@@ -48,9 +46,15 @@ class LoadUnloadStage(BaseOperation):
         _connection = context_manager.get_or_create_connection(self.connection_config)
         _query = self._format_query(self._use_schema_query)
         snowflake_io.execute(_connection, _query)
-        _query = self._format_query(self._parse_query_from_template())
+
+        _list_templates = get_all_data_from_yaml(self.template_file)
+        log.debug("Successfully read template file")
+
+        _query = self._format_query(self._parse_query_from_template(_list_templates))
         _cursor = snowflake_io.execute(_connection, _query)
         _output = snowflake_io.fetch_one(_cursor)
+        _output[YamlContractEnum.OPERATION_TYPE.value] = self.operation_type
+
         context_manager.add_operation_output(self.operation_type, _output)
 
 
@@ -68,10 +72,18 @@ class Put(LoadUnloadStage):
         _connection = context_manager.get_or_create_connection(self.connection_config)
         _query = self._format_query(self._use_schema_query)
         snowflake_io.execute(_connection, _query)
+
+        _list_templates = get_all_data_from_yaml(self.template_file)
+        log.debug("Successfully read template file")
+
         file_or_directory_to_load_from = self.source
         for file_to_load in yield_all_files(file_or_directory_to_load_from):
             self.source = file_to_load
-            _query = self._format_query(self._parse_query_from_template())
+            _query = self._format_query(
+                self._parse_query_from_template(_list_templates)
+            )
             _cursor = snowflake_io.execute(_connection, _query)
             _output = snowflake_io.fetch_one(_cursor)
+            _output[YamlContractEnum.OPERATION_NAME.value] = self.name
+
             context_manager.add_operation_output(self.operation_type, _output)
