@@ -13,3 +13,5 @@ base_config = GlobalConfigParser().parse(_global_config_abs_path)
 _log_level = base_config.get("log_level", "DEBUG")
 log = get_logger(__name__, log_level=_log_level)
 init_default_handler(log, log_level=_log_level)
+
+log.info("Logging set up successfully")

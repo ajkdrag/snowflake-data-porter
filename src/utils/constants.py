@@ -7,6 +7,7 @@ class YamlContractEnum(Enum):
     SOURCE = "source"
     TARGET = "target"
     OPERATION_TYPE = "operation_type"
+    OPERATION_NAME = "name"
     COPY = "copy"
     PUT = "put"
     GET = "get"

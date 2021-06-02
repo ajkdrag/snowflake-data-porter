@@ -26,8 +26,11 @@ def main():
     args = parser.parse_args()
     pipeline_manager = PipelineManager(config_path=args.config, wrk_dir=args.wrk_dir)
     pipeline_manager.setup()
+    log.info("======== Building the pipeline =========")
     pipeline_manager.buildPipeline()
+    log.info("======== Triggering the pipeline =========")
     pipeline_manager.triggerPipeline()
+    log.info("======== Writing results =========")
     pipeline_manager.writeResults()
 
 
